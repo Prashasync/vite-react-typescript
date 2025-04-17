@@ -22,7 +22,7 @@ const SymptomTracker = () => {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_ENDPOINT}/symptoms/history`,
         {
-          withCredentials: true,
+          // withCredentials: true
         }
       );
       if (response.status === 200) {

@@ -40,7 +40,7 @@ const QuestionTwo = ({ setCurrentQuestion }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
+          withCredentials: true
         }
       );
       if (response.status !== 200) {
@@ -57,7 +57,7 @@ const QuestionTwo = ({ setCurrentQuestion }) => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_ENDPOINT}/api/v1/patients/onboarding-status`,
-        { withCredentials: true }
+        // { withCredentials: true}
       );
 
       if (response.status === 200) {

@@ -21,7 +21,7 @@ const NotesForEmotions = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
+          // withCredentials: truerue,
         }
       );
       if (response.status === 200) {
@@ -56,10 +56,7 @@ const NotesForEmotions = () => {
       </form>
       <div className="notes-btn">
         <button onClick={handleSkip}>Skip</button>
-        <button
-          onClick={handleSubmit}
-          className="note-submit-button"
-        >
+        <button onClick={handleSubmit} className="note-submit-button">
           Submit
         </button>
       </div>

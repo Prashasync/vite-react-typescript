@@ -26,14 +26,14 @@ const CauseOfEmotion = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
+          // withCredentials: true,
         }
       );
       if (response.status === 201) {
         navigate("/symptom-tracker/questionare/3");
       }
     } catch (error) {
-      if(error.response && error.response.status === 401) {
+      if (error.response && error.response.status === 401) {
         navigate("/login");
       }
       console.error("Error logging cause of emotion:", error);

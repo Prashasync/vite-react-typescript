@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const QuestionThree = ({ setCurrentQuestion }) => {
   const [reminderChoice, setReminderChoice] = useState("");
-  const [reminderTime, setReminderTime] = useState("8:00 AM"); 
+  const [reminderTime, setReminderTime] = useState("8:00 AM");
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -30,13 +30,13 @@ const QuestionThree = ({ setCurrentQuestion }) => {
         },
         {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true,
+          // withCredentials: true,
         }
       );
-      if(response.status === 200) {
-        navigate("/symptom-tracker")
+      if (response.status === 200) {
+        navigate("/symptom-tracker");
       }
-      navigate("/home")
+      navigate("/home");
     } catch (error) {
       console.error(error);
       console.log("There was an error storigng your 3rd response", error);

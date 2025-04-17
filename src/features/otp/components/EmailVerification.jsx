@@ -17,7 +17,7 @@ const EmailVerification = ({ setShowOtp, email }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_ENDPOINT}/api/v1/verify`,
+        `${process.env.REACT_APP_SERVER_ENDPOINT}/api/v/verify`,
         { email, otp },
         {
           headers: {

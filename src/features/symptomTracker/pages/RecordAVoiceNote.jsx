@@ -37,8 +37,8 @@ const VoiceNoteForm = () => {
   };
 
   const handleSkip = () => {
-    navigate("/symptom-tracker")
-  }
+    navigate("/symptom-tracker");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,11 +56,11 @@ const VoiceNoteForm = () => {
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
-          withCredentials: true,
+          // withCredentials: true,
         }
       );
-      if(response.status === 200) {
-        navigate("/symptom-tracker")
+      if (response.status === 200) {
+        navigate("/symptom-tracker");
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -76,7 +76,9 @@ const VoiceNoteForm = () => {
       onSubmit={handleSubmit}
       className="max-w-md mx-auto mt-6 p-4 bg-white shadow-xl rounded-2xl"
     >
-      <h2 className="text-xl font-semibold mb-4">🎤 Would You Like To Leave a Voice Note</h2>
+      <h2 className="text-xl font-semibold mb-4">
+        🎤 Would You Like To Leave a Voice Note
+      </h2>
 
       <div className="flex items-center gap-4 mb-4">
         {!recording ? (

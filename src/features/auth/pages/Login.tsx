@@ -1,21 +1,30 @@
+import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../../shared/styles/login.css";
 import GoogleAuth from "../../../shared/utils/GoogleAuth";
-import useAuthStore from "../../../store/useAuthStore";
+import useAuthStore from "../../../store/useAuthStore.tsx";
 
-export default function Login() {
-  const [formData, setFormData] = useState({});
+interface FormData {
+  email: string;
+  password: string;
+}
+
+const Login = () => {
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const setUserId = useAuthStore((state) => state.setUser);
+  const setUserId = useAuthStore((state: any) => state.setUser); // Ideally: strongly type `state`
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -29,12 +38,16 @@ export default function Login() {
         setUserId(formData.email);
         navigate("/otp");
       }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      setError(`${error.response.data.error}. Please try again`);
-      setTimeout(() => {
-        setError("");
-      }, 3000);
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        setError(
+          `${err.response?.data?.error || "Login failed"}. Please try again`
+        );
+      } else {
+        setError("An unexpected error occurred. Please try again.");
+      }
+
+      setTimeout(() => setError(""), 3000);
     }
   };
 
@@ -72,9 +85,10 @@ export default function Login() {
           <button type="submit" className="primary-button">
             Continue
           </button>
+
           <GoogleAuth />
-          {/* <AppleAuth /> */}
         </form>
+
         <Link to="/password-reset">Forgot Password?</Link>
         <p>
           Need an account? <Link to="/register">Sign up</Link>
@@ -83,4 +97,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default Login;

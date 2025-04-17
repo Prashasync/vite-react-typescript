@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import QuestionOne from "../components/QuestionOne";
 import QuestionTwo from "../components/QuestionTwo";
-import QuestionThree from "../components/QuestionThree"
+import QuestionThree from "../components/QuestionThree";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../../shared/styles/onboarding.css";
@@ -14,8 +14,8 @@ const Onboarding = () => {
   const fetchUserProgress = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_SERVER_ENDPOINT}/api/v1/patients/onboarding-status`,
-        { withCredentials: true }
+        `${process.env.REACT_APP_SERVER_ENDPOINT}/api/v1/patients/onboarding-status`
+        // { // withCredentials: true }
       );
 
       if (!response.data.onboardingStatus) {
